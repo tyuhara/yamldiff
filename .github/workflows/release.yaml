@@ -45,16 +45,16 @@ jobs:
       - name: Create tar.gz archives
         run: |
           # Linux amd64
-          tar czf yamldiff-${{ steps.get_version.outputs.VERSION }}-linux-amd64.tar.gz yamldiff-linux-amd64 README.md INSTALL.md CONFIG_GUIDE.md yamldiff.yaml.example
+          tar czf yamldiff-${{ steps.get_version.outputs.VERSION }}-linux-amd64.tar.gz --transform='s/yamldiff-linux-amd64/yamldiff/' yamldiff-linux-amd64 README.md INSTALL.md CONFIG_GUIDE.md yamldiff.yaml.example
 
           # Linux arm64
-          tar czf yamldiff-${{ steps.get_version.outputs.VERSION }}-linux-arm64.tar.gz yamldiff-linux-arm64 README.md INSTALL.md CONFIG_GUIDE.md yamldiff.yaml.example
+          tar czf yamldiff-${{ steps.get_version.outputs.VERSION }}-linux-arm64.tar.gz --transform='s/yamldiff-linux-arm64/yamldiff/' yamldiff-linux-arm64 README.md INSTALL.md CONFIG_GUIDE.md yamldiff.yaml.example
 
           # macOS amd64
-          tar czf yamldiff-${{ steps.get_version.outputs.VERSION }}-darwin-amd64.tar.gz yamldiff-darwin-amd64 README.md INSTALL.md CONFIG_GUIDE.md yamldiff.yaml.example
+          tar czf yamldiff-${{ steps.get_version.outputs.VERSION }}-darwin-amd64.tar.gz --transform='s/yamldiff-darwin-amd64/yamldiff/' yamldiff-darwin-amd64 README.md INSTALL.md CONFIG_GUIDE.md yamldiff.yaml.example
 
           # macOS arm64
-          tar czf yamldiff-${{ steps.get_version.outputs.VERSION }}-darwin-arm64.tar.gz yamldiff-darwin-arm64 README.md INSTALL.md CONFIG_GUIDE.md yamldiff.yaml.example
+          tar czf yamldiff-${{ steps.get_version.outputs.VERSION }}-darwin-arm64.tar.gz --transform='s/yamldiff-darwin-arm64/yamldiff/' yamldiff-darwin-arm64 README.md INSTALL.md CONFIG_GUIDE.md yamldiff.yaml.example
 
       - name: Generate checksums
         run: |
