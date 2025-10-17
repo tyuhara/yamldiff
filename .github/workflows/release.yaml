@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+
 jobs:
   release:
     name: Create Release
@@ -66,32 +69,6 @@ jobs:
             yamldiff-${{ steps.get_version.outputs.VERSION }}-darwin-amd64.tar.gz
             yamldiff-${{ steps.get_version.outputs.VERSION }}-darwin-arm64.tar.gz
             checksums.txt
-            ## yamldiff ${{ steps.get_version.outputs.VERSION }}
-
-            ### Installation
-
-            Download the appropriate binary for your platform:
-
-            **Linux (amd64)**:
-
-                curl -LO https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/yamldiff-${{ steps.get_version.outputs.VERSION }}-linux-amd64.tar.gz
-                tar xzf yamldiff-${{ steps.get_version.outputs.VERSION }}-linux-amd64.tar.gz
-                sudo mv yamldiff-linux-amd64 /usr/local/bin/yamldiff
-
-            **macOS (Apple Silicon)**:
-
-                curl -LO https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/yamldiff-${{ steps.get_version.outputs.VERSION }}-darwin-arm64.tar.gz
-                tar xzf yamldiff-${{ steps.get_version.outputs.VERSION }}-darwin-arm64.tar.gz
-                sudo mv yamldiff-darwin-arm64 /usr/local/bin/yamldiff
-
-            **macOS (Intel)**:
-
-                curl -LO https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/yamldiff-${{ steps.get_version.outputs.VERSION }}-darwin-amd64.tar.gz
-                tar xzf yamldiff-${{ steps.get_version.outputs.VERSION }}-darwin-amd64.tar.gz
-                sudo mv yamldiff-darwin-amd64 /usr/local/bin/yamldiff
-
-            ### Verify checksums
-
-                sha256sum -c checksums.txt
+          body: "## yamldiff ${{ steps.get_version.outputs.VERSION }}\n\n### Installation\n\nDownload the appropriate binary for your platform and extract it.\n\n### Checksums\n\nVerify your download using the checksums.txt file."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
